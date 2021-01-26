@@ -1,0 +1,57 @@
+﻿<h3 class="card-header">Credit card payment details</h3>
+<div class="card-body"> 
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label>Credit card number </label>
+                <input type="text" formControlName="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cardNumber.errors }" />
+                <div *ngIf="submitted && f.cardNumber.errors" class="invalid-feedback">
+                    <div *ngIf="f.cardNumber.errors.required">Credit card number is required</div>
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <label>Card holder</label> 
+                <input type="text" formControlName="cardHolder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cardHolder.errors }" />
+                <div *ngIf="submitted && f.cardHolder.errors" class="invalid-feedback">
+                    <div *ngIf="f.cardHolder.errors.required">Card holder is required</div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="form-row">
+            <div class="form-group col-4">
+                <label>Expiration Date </label>
+                <input type="date" formControlName="expiryDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.expiryDate.errors }" />
+                <div *ngIf="submitted && f.expiryDate.errors" class="invalid-feedback">
+                    <div *ngIf="f.expiryDate.errors.required">Expiration date is required</div>
+                    <div *ngIf="f.expiryDate.errors.expiryDate">Expiration date must be a valid email address</div>
+                </div>
+            </div>
+            <div class="form-group col-4">
+                <label>Security code</label>
+                <input type="text" formControlName="securityCode" class="form-control" minlength="3" [ngClass]="{ 'is-invalid': submitted && f.securityCode.errors }"/>
+                <div *ngIf="submitted && f.securityCode.errors" class="invalid-feedback">
+                    <div *ngIf="f.securityCode.errors.minlength">
+                        Security code must be at least 3 characters long.
+                   </div> 
+                </div>
+               
+            </div>
+            <div class="form-group col-4">
+                <label>Amount</label>
+                <input type="text" formControlName="amount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.amount.errors }" />
+                <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                    <div *ngIf="f.amount.errors.required">Amount is required</div>
+                    <div *ngIf="f.amount.errors.pattern">Amount should be greater than zero</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group float-right">
+            <a routerLink="../list" href="" class="btn btn-secondary mr-4">Cancel</a>
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Create
+            </button>
+        </div>
+    </form>
+</div>

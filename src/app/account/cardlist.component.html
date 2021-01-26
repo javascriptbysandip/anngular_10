@@ -1,0 +1,27 @@
+﻿<h3 class="card-header">Card List
+    <a routerLink="../register" class="btn btn-link float-right">Create</a>
+</h3>
+
+<div class="card-body">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Card number</th>
+            <th scope="col">Card holder</th>
+            <th scope="col">Expiry Date</th>
+            <th scope="col">Security code</th>
+            <th scope="col">Amount</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="cardList">
+          <tr *ngFor="let card of cardList">
+            <th scope="row">{{card.cardNumber}}</th>
+            <td>{{card.cardHolder}}</td>
+            <td>{{card.expiryDate}}</td>
+            <td>{{card.securityCode}}</td>
+            <td>{{card.amount}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
